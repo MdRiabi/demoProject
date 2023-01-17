@@ -3,7 +3,7 @@ package com.model;
 import java.util.Objects;
 
 public class User {
-	private Integer id;
+	private Long id;
 	private String firstName;
 	private String lastName;
 	private String age;
@@ -13,18 +13,9 @@ public class User {
 	public User() {
 		super();
 	}
-	
-
-	
-	
-	
 
 
-
-
-
-
-	public User(Integer id, String firstName, String lastName, String age, String country) {
+	public User(Long id, String firstName, String lastName, String age, String country) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -73,44 +64,18 @@ public class User {
 		this.country = country;
 	}
 
-
-
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-
-
-
-
-
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
-
-
-
-
-
-
-
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(age, country, firstName, id, lastName);
 	}
-
-
-
-
-
-
-
-
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -126,44 +91,10 @@ public class User {
 				&& Objects.equals(lastName, other.lastName);
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", country="
 				+ country + "]";
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
