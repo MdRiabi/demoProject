@@ -3,6 +3,7 @@ package com.service.Impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,23 @@ public class UserServiceImpl implements UserService {
 //			return  userOpt;
 //		 }
 //		 return  Optional.empty();
+	}
+
+	@Override
+	public void add(User user) {
+	 	user.setId(COUNTER++);
+		userList.add(user);
+	}
+
+	@Override
+	public Optional<User> delete(Long id) {
+
+		Optional<User> userOpt = userList.stream().filter(user->user.getId() ==id).findFirst();
+
+		if (userOpt.isPresent()){
+			userList = userList.stream().filter(user->userOpt.get().getId() != user.getId()).collect(Collectors.toList());
+			return userOpt;
+		}
+		return Optional.empty();
 	}
 }
