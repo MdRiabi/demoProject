@@ -1,12 +1,20 @@
 package com.model;
 
+
+
+import javax.validation.constraints.NotNull;
+
 import java.util.Objects;
 
 public class User {
 	private Long id;
+	@NotNull
 	private String firstName;
+	@NotNull
 	private String lastName;
+	@NotNull
 	private String age;
+	@NotNull
 	private String country;
 	
 	
