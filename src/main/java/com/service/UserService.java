@@ -5,12 +5,17 @@ import java.util.Optional;
 
 import com.model.User;
 
-public interface UserService {
+import javax.swing.text.html.Option;
+
+  public interface UserService {
 	
 	
 	public List<User> findAll();
 
 	public Optional<User> findById(Long id);
 
+	public void add(User user);
+
+	public Optional<User> delete(Long id);
 
 }
