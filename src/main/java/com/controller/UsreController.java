@@ -53,5 +53,20 @@ public class UsreController {
         }
         return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
     }
+    
 
+    @PutMapping("/update")    
+    public ResponseEntity<?> update(@RequestBody User user){
+    	
+    	Optional<User> optUser = userService.update(user);
+    	
+    	if (optUser.isPresent()) {
+    		return new ResponseEntity<User>(optUser.get() , HttpStatus.NO_CONTENT);
+			
+		}
+    	return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+    }
+    
+    
+  
 }
