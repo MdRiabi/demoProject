@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import com.model.User;
 
-import javax.swing.text.html.Option;
 
   public interface UserService {
 	
@@ -17,5 +16,9 @@ import javax.swing.text.html.Option;
 	public void add(User user);
 
 	public Optional<User> delete(Long id);
+
+
+	public Optional<User> update(User user);
+
 
 }
