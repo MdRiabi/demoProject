@@ -2,12 +2,21 @@ package com.model;
 
 
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
+	private String userName;
+	@NotNull
+	private String password;
 	@NotNull
 	private String firstName;
 	@NotNull
@@ -23,15 +32,53 @@ public class User {
 	}
 
 
-	public User(Long id, String firstName, String lastName, String age, String country) {
+	
+
+	public User(@NotNull String userName, @NotNull String password, @NotNull String firstName, @NotNull String lastName,
+			@NotNull String age, @NotNull String country) {
 		super();
-		this.id = id;
+		this.userName = userName;
+		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
 		this.country = country;
 	}
 
+
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+
+	public Long getId() {
+		return id;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -72,18 +119,18 @@ public class User {
 		this.country = country;
 	}
 
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
+	
+	
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(age, country, firstName, id, lastName);
+		return Objects.hash(age, country, firstName, id, lastName, password, userName);
 	}
+
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -96,13 +143,21 @@ public class User {
 		User other = (User) obj;
 		return Objects.equals(age, other.age) && Objects.equals(country, other.country)
 				&& Objects.equals(firstName, other.firstName) && Objects.equals(id, other.id)
-				&& Objects.equals(lastName, other.lastName);
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
+				&& Objects.equals(userName, other.userName);
 	}
+
+
+
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", country="
-				+ country + "]";
+		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", age=" + age + ", country=" + country + "]";
 	}
 
+
+
+
+	
 }
