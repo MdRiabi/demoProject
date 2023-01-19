@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 import com.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -42,9 +44,9 @@ public class UserServiceImpl implements UserService {
 //	}
 
 	@Override
-	public List<User> findAll() {
+	public Page<User> findAll(Pageable pageable) {
 
-		return  userRepository.findAll();
+		return  userRepository.findAll(pageable);
 		//return userList.stream().sorted(Comparator.comparing(User::getId)).collect(Collectors.toList());
 	}
 
@@ -84,12 +86,10 @@ public class UserServiceImpl implements UserService {
 				existingUser.setUserName(user.getUserName());
 			}
 
-			
 			if (user.getPassword() != null) {
 				existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
 			}
-
-
+			
 			if (user.getLastName() != null) {
 				existingUser.setLastName(user.getLastName());
 
@@ -121,9 +121,7 @@ public class UserServiceImpl implements UserService {
 	public Optional<User> delete(Long id) {
 
 		//Optional<User> userOpt = userList.stream().filter(user -> user.getId() == id).findFirst();
-
 		Optional<User> optUser = userRepository.findById(id);
-
 		if (optUser.isPresent()) {
 //			userList = userList.stream().filter(user -> userOpt.get().getId() != user.getId())
 //					.collect(Collectors.toList());
@@ -133,4 +131,39 @@ public class UserServiceImpl implements UserService {
 		return Optional.empty();
 	}
 
+	@Override
+	public List<User> findByCriteria(String criteria, String searchItem) {
+	
+		switch (criteria) {
+	case "userName":
+		return this.userRepository.findByUserName(searchItem);
+	
+	case "firstName":
+		return this.userRepository.findByFirstName(searchItem);
+		
+	case "lastName":
+		return this.userRepository.findByLastName(searchItem);
+	
+	case "age":
+		return this.userRepository.findByAge(searchItem);	
+	case "country":
+		return this.userRepository.findByCountry(searchItem);		
+	}
+		return new ArrayList<>();
+		
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
