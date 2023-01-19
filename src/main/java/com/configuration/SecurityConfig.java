@@ -17,16 +17,21 @@ private PasswordEncoder passwordEncoder;
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		
-		httpSecurity.authorizeRequests()
-		.antMatchers("/h2/**").permitAll()
-		.antMatchers("/api/**").hasRole("ADMIN")
+//		httpSecurity.authorizeRequests()
+//		.antMatchers("/h2/**").permitAll()
+//		.antMatchers("/api/**").hasRole("ADMIN")
+//		.and()
+//		.httpBasic()
+//		.and()
+//		.csrf()
+//		.disable();
+//
+//			httpSecurity.headers().frameOptions().disable();
+
+httpSecurity.csrf().disable().formLogin().loginProcessingUrl("/login")
+		.and().httpBasic()
 		.and()
-		.httpBasic()
-		.and()
-		.csrf()
-		.disable();
-		
-			httpSecurity.headers().frameOptions().disable();
+		.authorizeRequests().antMatchers("/login").permitAll().anyRequest().permitAll();
 	}
 	
 	
