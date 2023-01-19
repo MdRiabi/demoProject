@@ -29,16 +29,19 @@ public class LoadUsersInDB  implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+    	if (userRepository.count()>0) {
+			return;
+		}
         User user0 = new User("louay", UUID.randomUUID().toString() , "Med", "riabi", "23" , "tunis");
-        User user1 = new User("userA", UUID.randomUUID().toString() , "zina", "ferchichi", "50", "tunis");
-        User user2 = new User("userB", UUID.randomUUID().toString() ,  "tarek", "riabi", "33", "tunis");
-        User user3 = new User("userC", UUID.randomUUID().toString() ,  "hamza", "riabi", "25", "tunis");
-        User user4 = new User("userD", UUID.randomUUID().toString() , "zina", "ferchichi", "50", "tunis");
-        User user5 = new User( "userE", UUID.randomUUID().toString() , "tarek", "riabi", "33", "tunis");
-        User user6 = new User( "userF", UUID.randomUUID().toString() , "hamza", "riabi", "25", "tunis");
-        User user7 = new User("userG", UUID.randomUUID().toString() , "zina", "ferchichi", "50", "tunis");
-        User user8 = new User("userH", UUID.randomUUID().toString() ,  "tarek", "riabi", "33", "tunis");
-        User user9 = new User("userI", UUID.randomUUID().toString() ,  "hamza", "riabi", "25", "tunis");
+        User user1 = new User("userA", UUID.randomUUID().toString() , "zina", "ferchichi", "50", "paris");
+        User user2 = new User("userB", UUID.randomUUID().toString() ,  "tarek", "riabi", "33", "italy");
+        User user3 = new User("userC", UUID.randomUUID().toString() ,  "hamza", "riabi", "25", "germany");
+        User user4 = new User("userD", UUID.randomUUID().toString() , "zina", "ferchichi", "50", "caire");
+        User user5 = new User( "userE", UUID.randomUUID().toString() , "tarek", "riabi", "33", "madrid");
+        User user6 = new User( "userF", UUID.randomUUID().toString() , "hamza", "riabi", "25", "munich");
+        User user7 = new User("userG", UUID.randomUUID().toString() , "zina", "ferchichi", "50", "istanboul");
+        User user8 = new User("userH", UUID.randomUUID().toString() ,  "tarek", "riabi", "33", "baghded");
+        User user9 = new User("userI", UUID.randomUUID().toString() ,  "hamza", "riabi", "25", "new york");
         
         List<User> usersList = Arrays.asList(user0, user1, user2 , user3 , user4, user5, user6, user7, user8 , user9);
         
